@@ -99,6 +99,7 @@ def query():
         if prediction=='fire': query_str += "\nAND prediction = 'FIRE'"
         elif prediction=='no_fire': query_str += "\nAND prediction = 'NO_FIRE'"
         param_str += "prediction='{}'".format(prediction)
+        query_str += "\nORDER BY time_captured DESC"
 
         
         conn = get_db_connection()

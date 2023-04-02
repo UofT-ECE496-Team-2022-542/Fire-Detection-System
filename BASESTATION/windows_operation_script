@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "Starting Fire Detection Drone"
+while true
+do
+    echo "Connecting to TELLO"
+    netsh wlan disconnect
+    sleep 3
+    netsh wlan connect name="TELLO-FE184E"
+    sleep 3
+
+    echo "Intiating Autonomous Flight"
+    py drone_controller.py
+    echo "TELLO should have landed correctly"
+    echo "Switching to UofT Wifi"
+
+    netsh wlan disconnect
+    sleep 3
+    netsh wlan connect name="BELL995" 
+    sleep 3
+    echo "Sending images to BACKEND"
+    py basestation.py
+    # echo "Completed sending images to the BACKEND"
+done

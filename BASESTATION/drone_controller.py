@@ -49,15 +49,16 @@ def surveillance(drone):
 def execute_flight_path(drone):
     image_capture(drone)
     drone.takeoff()
-    surveillance(drone)
+    time.sleep(3)
+    # surveillance(drone)
     #go_xyz_speed(x, y, z, speed)
     drone.go_xyz_speed(0,0,50,40)
     surveillance(drone)
     #up and right by 200 cm
     drone.go_xyz_speed(50,0,0,40)
     surveillance(drone)
-    drone.go_xyz_speed(50,0,0,40)
-    drone.drone.land()
+    drone.go_xyz_speed(-50,0,0,40)
+    drone.land()
     
 """ def execute_flight_path(my_drone):
     count = 10

@@ -1,12 +1,13 @@
 0) If you have never used python virtual environments on your machine before, do the following once:
-> python -m pip install --user virtualenv.
+> python -m pip install --user virtualenv
 
 1) Open a terminal and change diectories to the service you want to run:
-Ex. > cd BACKEND
+Ex. > cd SERVER
 
 2) > python -m venv --without-pip ./venv
 
-3) > venv\Scripts\activate
+3) > .\venv\Scripts\activate
+    If you need the permissions, type: # Set-ExecutionPolicy Unrestricted -Scope Process first.
     For mac: $ source venv/bin/activate
 
 4) > python -m ensurepip 
@@ -17,3 +18,8 @@ Ex. > cd BACKEND
 
 7) When you're done, deactivate the virtual environment:
 > deactivate
+
+Other Notes
+8) To run the bash script on windows, open powershell and type bash windows_operation_script
+9) You may need to type py instead of python
+10) If you are using python version 3.10, you may need to manually py -m pip install each required library

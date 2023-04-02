@@ -26,6 +26,8 @@ def get_image_filepaths(dir_path, proper_filename=True):
         if os.path.isfile(f):
             if proper_filename:
                 date, lat, lon = retrieve(filename)
+                date = datetime.datetime.strptime(date, '%Y.%m.%d-%H.%M.%S.%f')
+                date = date.strftime('%Y-%m-%d %H:%M:%S')
                 filepaths.append([f, date, lat, lon])
             else:
                 filepaths.append(f)
