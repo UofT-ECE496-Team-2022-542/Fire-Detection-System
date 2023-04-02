@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Starting Fire Detection Drone"
+while true
+do
+    echo "Connecting to TELLO"
+    networksetup -setairportnetwork en0 "TELLO-994E04" 
+    sleep 3
+    echo "Connecting to Home"
+    networksetup -setairportnetwork en0 "UofT" 
+done
+

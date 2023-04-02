@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Enter Query Parameters {% endblock %}</h1>
+    <form method="post">
+
+        <label for="drone_id">Drone ID:</label>
+        <input type="number" step="1" name="drone_id"
+                placeholder=""
+                value="{{ request.form['drone_id'] }}"></input>
+        <br><br>
+
+        <label for="min_time">Min Time:</label>
+        <input type="datetime-local" step="1" name="min_time"
+                value="{{ request.form['min_time'] }}"></input>
+
+        <label for="max_time">&emsp;&emsp;Max Time:</label>
+        <input type="datetime-local" step="1" name="max_time"
+                value="{{ request.form['max_time'] }}"></input>
+        <br><br>
+
+        <label for="min_lat">Min Lattitude:</label>
+        <input type="number" name="min_lat" min="-90" max="90"
+                placeholder="-90"
+                value="{{ request.form['min_lat'] }}"></input>
+
+        <label for="max_lat">&emsp;&emsp;Max Lattitude:</label>
+        <input type="number" name="max_lat" min="-90" max="90"
+                placeholder="90"
+                value="{{ request.form['max_lat'] }}"></input>
+        <br>
+
+        <label for="min_lon">Min Longitude:</label>
+        <input type="number" name="min_lon" min="-180" max="180"
+                placeholder="-180"
+                value="{{ request.form['min_lon'] }}"></input>
+
+        <label for="max_lon">&emsp;Max Longitude:</label>
+        <input type="number" name="max_lon" min="-180" max="180"
+                placeholder="180"
+                value="{{ request.form['max_lon'] }}"></input>
+        <br><br>
+
+        <label for="prediction">Prediction: </label><br>
+        <input type="radio" name="prediction" value="either" checked><span>Either Fire or No Fire</span><br/>
+        <input type="radio" name="prediction" value="fire"><span>Only Fire</span><br/>
+        <input type="radio" name="prediction" value="no_fire"><span>Only No Fire</span>
+        
+        <br><br>
+
+        <button type="submit">Execute</button>
+    </form>
+{% endblock %}

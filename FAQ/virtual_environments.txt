@@ -1,0 +1,19 @@
+0) If you have never used python virtual environments on your machine before, do the following once:
+> python -m pip install --user virtualenv.
+
+1) Open a terminal and change diectories to the service you want to run:
+Ex. > cd BACKEND
+
+2) > python -m venv --without-pip ./venv
+
+3) > venv\Scripts\activate
+    For mac: $ source venv/bin/activate
+
+4) > python -m ensurepip 
+
+5) > python -m pip install -r requirements.txt
+
+6) Your virtual environment is ready and all of your dependencies are installed! Do whatever you want now.
+
+7) When you're done, deactivate the virtual environment:
+> deactivate

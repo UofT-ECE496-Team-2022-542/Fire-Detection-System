@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Query Results{% endblock %}</h1>
+    <p>{{param_str}}</p>
+        <table>
+            <TR>
+                <TH class="message">&ensp;Image&ensp;</TH>
+                <TH class="message">&ensp;Prediction&ensp;</TH>
+                <TH class="message">&ensp;Drone ID&ensp;</TH>
+                <TH class="message">&ensp;Time Captured&ensp;</TH>
+                <TH class="message">&ensp;Lattitude&ensp;</TH>
+                <TH class="message">&ensp;Longitude&ensp;</TH>
+            </TR>
+            {% for result in results %}
+            <TR>
+                <TD class="message"><img src="data:image/jpg;base64,{{ result['image'] }}" width="150" height="150"/></TD>
+                <TD class="message">{{ result['prediction'] }}</TD>
+                <TD class="message">{{ result['drone_id'] }}</TD>
+                <TD class="message">{{ result['time_captured'] }}</TD>
+                <TD class="message">{{ result['lat'] }}</TD>
+                <TD class="message">{{ result['lon'] }}</TD>
+            </TR>
+            {% endfor %}
+        </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Starting Fire Detection Drone"
+while true
+do
+    echo "Connecting to TELLO"
+    networksetup -setairportnetwork en0 "TELLO-994E04" 
+    echo "Intiating Autonomous Flight"
+    python3 drone_controller.py
+    echo "TELLO should have landed correctly"
+    echo "Switching to UofT Wifi"
+    networksetup -setairportnetwork en0 "UofT" 
+    echo "Sending images to BACKEND"
+    python3 basestation.py
+    echo "Completed sending images to the BACKEND"
+done
+

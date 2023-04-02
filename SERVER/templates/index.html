@@ -1,0 +1,16 @@
+<!-- Refreshes the page every 'content' seconds -->
+<meta http-equiv="refresh" content="5">
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %}Alerts{% endblock %}</h1>
+    {% for alert in alerts %}
+        <div class='message'>
+            <h3>At {{ alert['time_captured'] }} from Drone #{{ alert['drone_id'] }}</h3>
+            <p>Lattitude: {{ alert['lat'] }}, Longitude: {{ alert['lon'] }}</p>
+            <img src="data:image/jpg;base64,{{ alert['image'] }}"
+                 width="150" height="150"/>
+        </div>
+    {% endfor %}
+{% endblock %}
