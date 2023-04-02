@@ -7,10 +7,7 @@ import os
 
 #---------- GLOBAL VARIABLES ----------
 # The address of the Backend's "log" route
-BACKEND_IP_ADDRESS = '127.0.0.1' # Local Host
-# BACKEND_IP_ADDRESS = ''# IP Address of server ipconfig/all
-BACKEND_PORT = 5000 # Port
-BACKEND_LOG_ADDRESS = 'http://' + BACKEND_IP_ADDRESS + ':' + str(BACKEND_PORT) + '/log'
+BACKEND_LOG_ADDRESS = 'http://icarusfiredetectionsystem.pythonanywhere.com/log'
 # The directory where images are stored
 IMAGE_DIR = None
 # The image classifier model
@@ -35,8 +32,11 @@ def log_request_folder(dir_path, print_progress=False, proper_filename=True):
 
         # Generate additional metadata
         prediction = forward_pass(MODEL, filepath)
-        # time_captured = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        time_captured = image_filepath[1]
+        time_captured = ''
+        if proper_filename:
+            time_captured = image_filepath[1]
+        else:
+            time_captured = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         # Execute the log request
         log_request(
@@ -49,7 +49,9 @@ def log_request_folder(dir_path, print_progress=False, proper_filename=True):
             image_filepath=filepath,
             print_progress=print_progress
         )
-        os.remove(image_filepath[0])
+
+        if proper_filename:
+            os.remove(image_filepath[0])
     return
 
 #---------- MAIN ----------
