@@ -5,7 +5,7 @@ import argparse
 import os
 from gps import get_point_at_distance
 
-import drone_controller
+import drone_controller_realtime as drone_controller
 from djitellopy import tello
 import cv2
 import time
@@ -64,7 +64,7 @@ def log_request_folder(dir_path, print_progress=False, proper_filename=True):
 
 def transfer_images():
     int1 = time.time()
-    os.system('networksetup -setairportnetwork en0 "Fighters" ')  
+    os.system('networksetup -setairportnetwork en0 "UofT" ')  
     time.sleep(2)
     log_request_folder(dir_path='drone_images')
     int2 = time.time()

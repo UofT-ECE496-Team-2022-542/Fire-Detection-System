@@ -46,7 +46,7 @@ def surveillance(drone):
             drone.rotate_clockwise(45+offset2)
         rotate += 1
     
-def execute_flight_path(drone):
+""" def execute_flight_path(drone):
     image_capture(drone)
     drone.takeoff()
     time.sleep(3)
@@ -58,14 +58,14 @@ def execute_flight_path(drone):
     drone.go_xyz_speed(50,0,0,40)
     surveillance(drone)
     drone.go_xyz_speed(-50,0,0,40)
-    drone.land()
+    drone.land() """
     
-""" def execute_flight_path(my_drone):
+def execute_flight_path(my_drone):
     count = 10
     while count > 0:
         image_capture(my_drone)
         count -= 1
-        time.sleep(1) """
+        time.sleep(1)
    
 
 if __name__ == "__main__":
