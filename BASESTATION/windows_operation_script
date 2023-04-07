@@ -5,7 +5,7 @@ do
     echo "Connecting to TELLO"
     netsh wlan disconnect
     sleep 3
-    netsh wlan connect name="TELLO-FE184E"
+    netsh wlan connect name="TELLO-994E04" #"TELLO-FE184E" #TELLO-994E04
     sleep 3
 
     echo "Intiating Autonomous Flight"
@@ -18,6 +18,6 @@ do
     netsh wlan connect name="BELL995" 
     sleep 3
     echo "Sending images to BACKEND"
-    py basestation.py
-    # echo "Completed sending images to the BACKEND"
+    py basestation.py --id 1
+    echo "Completed sending images to the BACKEND"
 done

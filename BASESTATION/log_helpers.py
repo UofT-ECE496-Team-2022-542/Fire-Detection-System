@@ -13,7 +13,7 @@ def retrieve(image_name):
     return date, lat, lon
 
 #Saves images taken by the drone as 
-def save(image, lat, lon):    
+def save(lat, lon):    
     time = datetime.datetime.now().strftime('%Y.%m.%d-%H.%M.%S.%f')[:-3]
     name = f"./drone_images/{time},{lat},{lon}.jpg"
     return name

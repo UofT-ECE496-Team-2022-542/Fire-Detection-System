@@ -7,7 +7,7 @@ Ex. > cd SERVER
 2) > python -m venv --without-pip ./venv
 
 3) > .\venv\Scripts\activate
-    If you need the permissions, type: # Set-ExecutionPolicy Unrestricted -Scope Process first.
+    If you need the permissions, type: # Set-ExecutionPolicy Unrestricted -Scope Process
     For mac: $ source venv/bin/activate
 
 4) > python -m ensurepip 

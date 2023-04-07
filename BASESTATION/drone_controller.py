@@ -26,7 +26,7 @@ def image_capture(drone):
     #cv2.imshow("Image", img)
     cv2.waitKey(1)
     
-    name = log_helpers.save(img, 90, -90)
+    name = log_helpers.save(43.46, 79.10)
     #name = 'drone_images/image'+ str(count) + '.jpg'
     #print(name)
 
@@ -45,20 +45,38 @@ def surveillance(drone):
         else:
             drone.rotate_clockwise(45+offset2)
         rotate += 1
+
+""""
+def execute_flight_path(drone):
     
-""" def execute_flight_path(drone):
-    image_capture(drone)
+    while True:
+        image_capture(drone)
+        time.sleep(5)
+
     drone.takeoff()
     time.sleep(3)
     # surveillance(drone)
     #go_xyz_speed(x, y, z, speed)
-    drone.go_xyz_speed(0,0,50,40)
+    drone.go_xyz_speed(0,0,200,40)
+    # surveillance(drone)
+    # drone.go_xyz_speed(0,0,150,40)
     surveillance(drone)
     #up and right by 200 cm
-    drone.go_xyz_speed(50,0,0,40)
+    drone.go_xyz_speed(400,0,0,50)
+    drone.go_xyz_speed(400,0,0,50)
     surveillance(drone)
-    drone.go_xyz_speed(-50,0,0,40)
-    drone.land() """
+    drone.rotate_clockwise(180)
+    drone.go_xyz_speed(400,0,0,50)
+    drone.go_xyz_speed(400,0,0,50)
+    # surveillance(drone)
+    drone.rotate_clockwise(180)
+    # drone.go_xyz_speed(400,0,0,50)
+    # surveillance(drone)
+    # drone.rotate_clockwise(90)
+    # drone.go_xyz_speed(300,0,0,50)
+    # drone.rotate_clockwise(90)
+    drone.land()
+"""
     
 def execute_flight_path(my_drone):
     count = 10
