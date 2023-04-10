@@ -15,12 +15,13 @@ import time
 # The address of the Backend's "log" route
 BACKEND_IP_ADDRESS = '127.0.0.1' # Local Host
 # BACKEND_IP_ADDRESS = ''# IP Address of server ipconfig/all
-BACKEND_PORT = 5000 # Port
-#BACKEND_LOG_ADDRESS = 'http://' + BACKEND_IP_ADDRESS + ':' + str(BACKEND_PORT) + '/log'
-BACKEND_LOG_ADDRESS = 'http://icarusfiredetectionsystem.pythonanywhere.com/log'
+BACKEND_PORT = 5001 # Port
+BACKEND_LOG_ADDRESS = 'http://' + BACKEND_IP_ADDRESS + ':' + str(BACKEND_PORT) + '/log'
+#BACKEND_LOG_ADDRESS = 'http://icarusfiredetectionsystem.pythonanywhere.com/log'
 # The directory where images are stored
 IMAGE_DIR = None
 # The image classifier model
+#MODEL = init_model('MODELS/demo_8.pth')
 MODEL = init_model('MODELS/ResNet18.pth')
 # The ID of this instance of the drone
 DRONE_ID = 0
@@ -65,7 +66,7 @@ def log_request_folder(dir_path, print_progress=False, proper_filename=True):
 def transfer_images():
     int1 = time.time()
     os.system('networksetup -setairportnetwork en0 "UofT" ')  
-    time.sleep(2)
+    time.sleep(20)
     log_request_folder(dir_path='drone_images')
     int2 = time.time()
     print(int2 - int1)
@@ -73,12 +74,49 @@ def transfer_images():
     #change to drone wifi
     time.sleep(0.5)
     
-        
+def transfer_images_local():
+    int1 = time.time()
+    #os.system('networksetup -setairportnetwork en0 "Fighters" ')  
+    #time.sleep(2)
+    log_request_folder(dir_path='drone_images')
+    int2 = time.time()
+    print(int2 - int1)
+    #os.system('networksetup -setairportnetwork en0 "TELLO-994E04" ')
+    #change to drone wifi
+    #time.sleep(0.5)
     
+# Enable this code when showing online host and no flight
 def execute_flight_path(drone):
     while True:
         drone_controller.image_capture(drone, LAT, LON)
-        transfer_images()
+        #transfer_images()
+        transfer_images_local()
+        
+# Enable this code when showing online but with flying
+""" def execute_flight_path(drone):
+    drone.takeoff()
+    drone.go_xyz_speed(0,0,20,40)
+    drone_controller.surveillance(drone, LAT, LON)
+    transfer_images()
+    drone.land() """
+    
+# Enable this when showing localhost but with flying
+""" def execute_flight_path(drone):
+    drone.takeoff()
+    drone.go_xyz_speed(0,0,20,40)
+    rotate = 0
+    offset1 = 1
+    offset2 = 2
+    while rotate < 8:
+        drone_controller.image_capture(drone, LAT, LON)
+        transfer_images_local()
+        if rotate % 2 == 0:  
+            drone.rotate_clockwise(45+offset1)
+        else:
+            drone.rotate_clockwise(45+offset2)
+        rotate += 1
+    drone.land() """
+    
     
     
 
@@ -106,10 +144,13 @@ if __name__ == '__main__':
 
     # REGULAR OPERATION
     else:
+        os.system('networksetup -setairportnetwork en0 "UofT" ') 
+        time.sleep(20)
         lat,lon = os.popen('curl ipinfo.io/loc').read().split(',')
         LAT = lat
         LON = lon
         os.system('networksetup -setairportnetwork en0 "TELLO-994E04" ')  
+        time.sleep(2)
         print("Connecting to tello")
         drone = tello.Tello()
         drone.connect()

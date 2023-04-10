@@ -21,18 +21,14 @@ def decimal_coords(coords, ref):
     return decimal_degrees
 
 def image_capture(drone):
-    global count
     img = drone.get_frame_read().frame
     #cv2.imshow("Image", img)
     cv2.waitKey(1)
     
     name = log_helpers.save(43.46, 79.10)
-    #name = 'drone_images/image'+ str(count) + '.jpg'
     #print(name)
 
     status = cv2.imwrite(name,img)
-    count += 1
-    #print(status)
     
 def surveillance(drone):
     rotate = 0
@@ -79,15 +75,13 @@ def execute_flight_path(drone):
 """
     
 def execute_flight_path(my_drone):
-    count = 10
-    while count > 0:
+    while True:
         image_capture(my_drone)
-        count -= 1
         time.sleep(1)
    
 
 if __name__ == "__main__":
-    count = 0
+    os.system('networksetup -setairportnetwork en0 "TELLO-994E04" ')
     # initialize the system configurations and store it
     drone = tello.Tello()
     drone.connect()
